@@ -24,6 +24,16 @@ mp.events.add("render", () => {
         weaponSwitch();
     }
 
+});
+
+mp.events.add("playerReady", () => {
+    mp.game.invoke("0xB1906895227793F3", 0);
+    mp.game.invoke("0x29961D490E5814FD", mp.players.local.handle, 2000);
+    mp.game.invoke("0x5C8B2F450EE4328E", mp.players.local.handle, true);
+});
+
+
+mp.events.add('playerWeaponShot', (targetPosition, targetEntity) => {
     mp.game.invoke("0xB1906895227793F3", 0);
     mp.game.invoke("0x29961D490E5814FD", mp.players.local.handle, 2000);
     mp.game.invoke("0x5C8B2F450EE4328E", mp.players.local.handle, true);
