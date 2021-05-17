@@ -87,7 +87,10 @@ ui.ItemSelect.on(item => {
 
 let isClothShopOpen = false;
 
-mp.events.add("clothshop:selectItem", (drawableTop, drawableTorso, drawableUndershirt) => {
+let dbTotalCount, dbDoneCount;
+mp.events.add("clothshop:selectItem", (drawableTop, drawableTorso, drawableUndershirt, _dbTotalCount, _dbDoneCount) => {
+    dbTotalCount = _dbTotalCount;
+    dbDoneCount = _dbDoneCount;
     if (!isClothShopOpen) {
         ui.Open();
         mp.gui.chat.show(false);
@@ -121,6 +124,15 @@ mp.events.add("render", () => {
         scale: [.5, .5],
         outline: true,
         centre: true,
+    });
+
+    const percent = (Math.round(dbDoneCount / dbTotalCount *  100000) / 100000) * 100;
+    mp.game.graphics.drawText(`${percent}%`, [0.5, 0.9], {
+        font: 3,
+        color: [255, 255, 255, 185],
+        scale: [.3, .3],
+        outline: false,
+        centre: false,
     });
 });
 
