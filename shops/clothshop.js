@@ -119,7 +119,7 @@ mp.events.add("render", () => {
     if (!isClothShopOpen) return;
 
     mp.game.graphics.drawText(JSON.stringify(displayData), [0.5, 0.005], {
-        font: 7,
+        font: 2,
         color: [255, 255, 255, 185],
         scale: [.5, .5],
         outline: true,
@@ -128,7 +128,7 @@ mp.events.add("render", () => {
 
     const percent = (Math.round(dbDoneCount / dbTotalCount *  100000) / 100000) * 100;
     mp.game.graphics.drawText(`${percent}%`, [0.5, 0.9], {
-        font: 3,
+        font: 2,
         color: [255, 255, 255, 185],
         scale: [.3, .3],
         outline: false,
