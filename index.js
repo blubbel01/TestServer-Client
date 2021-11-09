@@ -114,7 +114,7 @@ const accuracyMap = new Map();
 accuracyMap.set(Number(mp.game.joaat("weapon_assaultrifle")), 50);
 accuracyMap.set(Number(mp.game.joaat("weapon_compactrifle")), 85);
 accuracyMap.set(Number(mp.game.joaat("weapon_machinepistol")), 100);
-accuracyMap.set(Number(mp.game.joaat("weapon_combatmg_mk2")), 50);
+accuracyMap.set(Number(mp.game.joaat("weapon_combatmg_mk2")), 35);
 accuracyMap.set(Number(mp.game.joaat("weapon_gusenberg")), 100);
 accuracyMap.set(Number(mp.game.joaat("weapon_snowball")), 100);
 accuracyMap.set(Number(mp.game.joaat("weapon_microsmg")), 100);
