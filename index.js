@@ -92,12 +92,12 @@ mp.events.add('outgoingDamage', (sourceEntity, targetEntity, targetPlayer, c_wea
         }
 
         if (c_weapon == 0x1D073A89) {
-            mp.events.callRemote("playerShotPlayer", [targetPlayer.name, Number(c_weapon), boneIndex]);
+            mp.events.callRemote("playerShotPlayer", targetPlayer.name, String(c_weapon), boneIndex);
             if (boneIndex === 20) {
                 return true;
             }
         } else {
-            mp.events.callRemote("playerShotPlayer", [targetPlayer.name, Number(c_weapon), boneIndex]);
+            mp.events.callRemote("playerShotPlayer", targetPlayer.name, String(c_weapon), boneIndex);
         }
     }
 });
