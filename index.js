@@ -79,10 +79,44 @@ function RequestModel(model, ms, callback) {
     }
 }
 
+
+function getWeaponRange(hash) {
+    if (hash == 0x1D073A89) {
+        return 25;
+    } else if (hash == 1820140472) {
+        return 40;
+    } else if (hash == 0x7846A318) {
+        return 40;
+    } else if (hash == 0x9D61E50F) {
+        return 40;
+    } else if (hash == 0xE284C527) {
+        return 40;
+    } else if (hash == 0xA89CB99E) {
+        return 200;
+    } else if (hash == 0x3AABBBAA) {
+        return 40;
+    } else if (hash == 0xEF951FBB) {
+        return 40;
+    } else if (hash == 0x12E82D3D) {
+        return 40;
+    } else if (hash == 0x05FC3C11) {
+        return 500;
+    } else if (hash == 0xDBBD7280) {
+        return 100;
+    }
+    return 150;
+}
+
 mp.events.add('outgoingDamage', (sourceEntity, targetEntity, targetPlayer, c_weapon, boneIndex, damage) => {
     if (mp.players.local.isPerformingStealthKill()) {
         return true;
     }
+
+    const {x:x1, y:y1, z:z1} = sourceEntity.position;
+    const {x:x2, y:y2, z:z2} = targetPlayer.position;
+    const dist = mp.game.system.vdist(x1, y1, z1, x2, y2, z2);
+    const maxDist = getWeaponRange(Number(c_weapon));
+    if (dist > maxDist) return true;
 
     if (targetEntity.type === "player" && targetPlayer != null) {
         if (mp.players.local.isInAnyVehicle(false) && !targetPlayer.isInAnyVehicle(false)) {
