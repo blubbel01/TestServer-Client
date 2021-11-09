@@ -109,18 +109,18 @@ mp.events.add("render", () => {
     }
 });
 
-const accuracy = new Map();
-accuracy.set(Number(mp.game.joaat("weapon_assaultrifle")), 50);
-accuracy.set(Number(mp.game.joaat("weapon_compactrifle")), 85);
-accuracy.set(Number(mp.game.joaat("weapon_machinepistol")), 100);
-accuracy.set(Number(mp.game.joaat("weapon_combatmg_mk2")), 50);
-accuracy.set(Number(mp.game.joaat("weapon_gusenberg")), 100);
-accuracy.set(Number(mp.game.joaat("weapon_snowball")), 100);
-accuracy.set(Number(mp.game.joaat("weapon_microsmg")), 100);
-accuracy.set(Number(mp.game.joaat("weapon_appistol")), 100);
+const accuracyMap = new Map();
+accuracyMap.set(Number(mp.game.joaat("weapon_assaultrifle")), 50);
+accuracyMap.set(Number(mp.game.joaat("weapon_compactrifle")), 85);
+accuracyMap.set(Number(mp.game.joaat("weapon_machinepistol")), 100);
+accuracyMap.set(Number(mp.game.joaat("weapon_combatmg_mk2")), 50);
+accuracyMap.set(Number(mp.game.joaat("weapon_gusenberg")), 100);
+accuracyMap.set(Number(mp.game.joaat("weapon_snowball")), 100);
+accuracyMap.set(Number(mp.game.joaat("weapon_microsmg")), 100);
+accuracyMap.set(Number(mp.game.joaat("weapon_appistol")), 100);
 
 mp.events.add("playerWeaponShot", () => {
-    const accuracy = accuracy.has(lastWeaponHash) ? accuracy.get(lastWeaponHash) : 0;
+    const accuracy = accuracyMap.has(lastWeaponHash) ? accuracyMap.get(lastWeaponHash) : 0;
 
     if (accuracy) {
         if (accuracy >= 100) {
