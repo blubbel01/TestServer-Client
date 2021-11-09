@@ -29,6 +29,9 @@ mp.events.add("render", () => {
 mp.events.add("playerReady", () => {
     mp.game.invoke("0xB1906895227793F3", 3);
     mp.players.local.setProofs(true, false, false, false, true, true, true, false);
+    mp.game.ui.displayHud(true);
+    mp.game.ui.setMinimapVisible(false);
+    mp.players.local.freezePosition(false);
 });
 
 
