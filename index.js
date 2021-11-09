@@ -100,3 +100,35 @@ mp.events.add('outgoingDamage', (sourceEntity, targetEntity, targetPlayer, c_wea
         }
     }
 });
+
+let lastWeaponHash;
+mp.events.add("render", () => {
+    const currentWeapon = mp.players.local.weapon;
+    if (lastWeaponHash !== lastWeaponHash) {
+        lastWeaponHash = currentWeapon;
+    }
+});
+
+const accuracy = new Map();
+accuracy.set(mp.game.joaat("weapon_assaultrifle"), 50);
+accuracy.set(mp.game.joaat("weapon_compactrifle"), 85);
+accuracy.set(mp.game.joaat("weapon_machinepistol"), 100);
+accuracy.set(mp.game.joaat("weapon_combatmg_mk2"), 50);
+accuracy.set(mp.game.joaat("weapon_gusenberg"), 100);
+accuracy.set(mp.game.joaat("weapon_snowball"), 100);
+accuracy.set(mp.game.joaat("weapon_microsmg"), 100);
+accuracy.set(mp.game.joaat("weapon_appistol"), 100);
+
+mp.events.add("playerWeaponShot", () => {
+    const accuracy = accuracy.has(lastWeaponHash) ? accuracy.get(lastWeaponHash) : 0;
+
+    if (accuracy) {
+        if (Math.random() <= (accuracy / 100)) {
+            mp.players.local.setAccuracy(100);
+        } else {
+            mp.players.local.setAccuracy(99);
+        }
+    } else {
+        mp.players.local.setAccuracy(99);
+    }
+});
